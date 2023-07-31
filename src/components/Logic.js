@@ -19,19 +19,19 @@ import getDeliveryTime from "./getDeliveryTime"
 function createDateByHrs(hours){
     const currentDate = new Date()
     currentDate.setHours(hours)
+    currentDate.setMinutes(0)
     return currentDate
 }
 
 function Logic(value, quantity) {
 
     const deliveryTime = getDeliveryTime(quantity)
-
     const requestedHours = value.getHours()
     const requestedTime = value
     let pickUpTime = null
     let dropTime = null
 
-    if (requestedTime >= createDateByHrs(8) && requestedTime <= createDateByHrs(20)) {  //Ordered between 8am to 8pm | Give slot in next 1hour
+    if (requestedTime >= createDateByHrs(8) && requestedTime < createDateByHrs(20)) {  //Ordered between 8am to 8pm | Give slot in next 1hour
         console.log("MID HIT")
         pickUpTime = requestedTime
         pickUpTime.setHours(requestedHours + 1)

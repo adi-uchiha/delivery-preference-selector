@@ -3,6 +3,7 @@
 import DateDisplay from "@/components/DateDisplay";
 import NumericInput from "@/components/NumericInput";
 import ProgressBar from "@/components/ProgressBar";
+import Head from "next/head";
 import { useState } from "react";
 
 
@@ -13,6 +14,9 @@ export default function Home() {
 
   return (
     <main>
+      <Head>
+      <link rel="shortcut icon" href="" />
+    </Head>
       <div className='flex justify-center mt-6'>
         <h1 className="sm:text-xl content-evenly lg:text-5xl font-semibold text-white leading-tight shadow-xl bg-gradient-to-r from-cyan-800 to-blue-600 p-4 rounded-lg">
           Delivery Preference Selector
@@ -28,7 +32,7 @@ export default function Home() {
         <NumericInput setResult={setResult}/>
 
       <div className="fade-in-bottom flex flex-col items-center" id="animatedDiv">
-        <span className="text-white pb-10 pt-10">----- Your Timeline -----</span>
+        <span className="text-white pb-10 pt-10">----- Estimated Timeline -----</span>
         <div className="flex flex-row w-full align-middle justify-center items-center">
           <DateDisplay date={result[0]} type="Pick" />
           <ProgressBar />
