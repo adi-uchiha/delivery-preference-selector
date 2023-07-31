@@ -26,8 +26,6 @@ function Logic(value, quantity) {
         else if(pickUpMins > 30 && pickUpMins < 45) {requestedTime.setMinutes(45)}
         else if(pickUpMins > 45 && pickUpMins <= 59) {
             requestedTime.setMinutes(0)
-            console.log("15 MIN Formated")
-
             const newHrs = requestedHours + 1
             console.log(newHrs)
             requestedTime.setHours(newHrs)

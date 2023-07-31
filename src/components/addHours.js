@@ -30,6 +30,10 @@ function addHoursWithTimeConstraints(pickUpTime, addHours) {
         dropTime.setMinutes(minutesToAdd)
     }
 
+    if (dropTime.getHours() === 8) {
+        dropTime.setHours(9, 0,0,0)
+    }
+
     return dropTime
 }
 
