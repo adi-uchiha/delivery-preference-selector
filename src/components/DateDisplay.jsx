@@ -12,6 +12,7 @@ const DateDisplay = ({date, type}) => {
     return <>
     <div className="flex flex-col justify-center align-middle items-center">
         <div className="flex flex-col items-center text-white pt-2 pb-2 pl-5 pr-5 border-2 border-cyan-400 rounded-md max-w-min">
+        <span className="text-white font-light text-xs">{type}</span>
             <h1 className="text-5xl">{day}</h1>
 
             <div className="font-semibold">{month}</div>
@@ -22,7 +23,7 @@ const DateDisplay = ({date, type}) => {
                 <div className="">{minutes}</div>
                 <div className="pl-1">{amPm}</div>
             </div>
-        <span className="text-white font-light text-xs">{type}</span>
+            <span className="text-white font-light text-xs">onwards</span>
         </div>
     </div>
     </>
