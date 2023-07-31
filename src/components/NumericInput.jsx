@@ -9,10 +9,8 @@ const NumericInput = (props) => {
     const [errorMsg, setErrorMsg] = useState(null)
 
     const handleChange = (event) => {
-        console.log("Handle Change Called")
         const value = event.target.value
         if(/^\d*$/.test(value)){
-            console.log("INT")
             setValue(event.target.value)
             setQuantity(event.target.value)
         }else{
@@ -21,8 +19,6 @@ const NumericInput = (props) => {
                 setErrorMsg(null)
             }, 4000);
         }
-
-        
     };
 
     return (

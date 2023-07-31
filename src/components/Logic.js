@@ -16,12 +16,7 @@ import getDeliveryTime from "./getDeliveryTime"
 //     }
 // }
 
-function createDateByHrs(hours){
-    const currentDate = new Date()
-    currentDate.setHours(hours)
-    currentDate.setMinutes(0)
-    return currentDate
-}
+
 
 function Logic(value, quantity) {
 
@@ -31,8 +26,15 @@ function Logic(value, quantity) {
     let pickUpTime = null
     let dropTime = null
 
+    function createDateByHrs(hours){
+        const currentDate = new Date(requestedTime)
+        currentDate.setHours(hours)
+        currentDate.setMinutes(0)
+        return currentDate
+    }
+
     if (requestedTime >= createDateByHrs(8) && requestedTime < createDateByHrs(20)) {  //Ordered between 8am to 8pm | Give slot in next 1hour
-        console.log("MID HIT")
+        // console.log("MID HIT")
         pickUpTime = requestedTime
         pickUpTime.setHours(requestedHours + 1)
 
@@ -49,7 +51,7 @@ function Logic(value, quantity) {
         pickUpTime.setHours(8, 0, 0, 0)
 
     }
-    console.log(pickUpTime)
+    // console.log(pickUpTime)
     const pickUpTimeFinal = new Date(pickUpTime)
 
     dropTime = addHoursWithTimeConstraints(pickUpTime, deliveryTime)
