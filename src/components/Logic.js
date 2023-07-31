@@ -1,23 +1,6 @@
 import addHoursWithTimeConstraints from "./addHours";
 import getDeliveryTime from "./getDeliveryTime"
 
-// function FirstIsGreaterThan2nd(time1, time2) {
-//     const hours1 = time1.getHours();
-//     const minutes1 = time1.getMinutes();
-//     const hours2 = time2.getHours();
-//     const minutes2 = time2.getMinutes();
-
-//     if (hours1 > hours2) {
-//         return true;
-//     } else if (hours1 === hours2 && minutes1 > minutes2) {
-//         return true;
-//     } else {
-//         return false;
-//     }
-// }
-
-
-
 function Logic(value, quantity) {
 
     const deliveryTime = getDeliveryTime(quantity)
@@ -33,17 +16,36 @@ function Logic(value, quantity) {
         return currentDate
     }
 
+    // Formatting to 15mins ahead 
+        const pickUpMins = requestedTime.getMinutes()
+        const pickHrs = requestedTime.getHours()
+
+        if(pickUpMins > 0 && pickUpMins < 15) {requestedTime.setMinutes(15)}
+        else if(pickUpMins > 15 && pickUpMins < 30) {requestedTime.setMinutes(30)}
+        else if(pickUpMins > 30 && pickUpMins < 45) {requestedTime.setMinutes(45)}
+        else if(pickUpMins > 45 && pickUpMins < 59) {
+            requestedTime.setMinutes(0)
+            const newHrs = requestedHours + 2
+            console.log(newHrs)
+            requestedTime.setHours(newHrs)
+            console.log(requestedTime)
+        }
+        console.log(requestedTime)
+    
+
     if (requestedTime >= createDateByHrs(8) && requestedTime < createDateByHrs(20)) {  //Ordered between 8am to 8pm | Give slot in next 1hour
         // console.log("MID HIT")
         pickUpTime = requestedTime
-        pickUpTime.setHours(requestedHours + 1)
+        const pickHoursAdder = requestedTime.getHours()
+        pickUpTime.setHours(pickHoursAdder + 1)
+        console.log(pickUpTime)
 
     } else if (requestedTime <= createDateByHrs(8)) {  //Ordered in morning before 8am (1am, 7am) | Give slot at 8am 
 
         pickUpTime = requestedTime
         pickUpTime.setHours(8, 0, 0, 0)
 
-    } else if (requestedTime > createDateByHrs(20)) {  //Ordered after 8pm (8:15pm, 10pm, 12am) give slot in next day morning
+    } else if (requestedTime >= createDateByHrs(20)) {  //Ordered after 8pm (8:15pm, 10pm, 12am) give slot in next day morning
 
         // console.log("BLOCK RUN")
         pickUpTime = requestedTime
@@ -52,6 +54,10 @@ function Logic(value, quantity) {
 
     }
     // console.log(pickUpTime)
+    // const pickUpTimeFinal = new Date(pickUpTime)
+
+    
+
     const pickUpTimeFinal = new Date(pickUpTime)
 
     dropTime = addHoursWithTimeConstraints(pickUpTime, deliveryTime)
