@@ -20,12 +20,15 @@ function Logic(value, quantity) {
         const pickUpMins = requestedTime.getMinutes()
         const pickHrs = requestedTime.getHours()
 
-        if(pickUpMins > 0 && pickUpMins < 15) {requestedTime.setMinutes(15)}
+        if(pickUpMins > 0 && pickUpMins < 15) {requestedTime.setMinutes(15); 
+        }
         else if(pickUpMins > 15 && pickUpMins < 30) {requestedTime.setMinutes(30)}
         else if(pickUpMins > 30 && pickUpMins < 45) {requestedTime.setMinutes(45)}
-        else if(pickUpMins > 45 && pickUpMins < 59) {
+        else if(pickUpMins > 45 && pickUpMins <= 59) {
             requestedTime.setMinutes(0)
-            const newHrs = requestedHours + 2
+            console.log("15 MIN Formated")
+
+            const newHrs = requestedHours + 1
             console.log(newHrs)
             requestedTime.setHours(newHrs)
             console.log(requestedTime)
@@ -33,7 +36,7 @@ function Logic(value, quantity) {
         console.log(requestedTime)
     
 
-    if (requestedTime >= createDateByHrs(8) && requestedTime < createDateByHrs(20)) {  //Ordered between 8am to 8pm | Give slot in next 1hour
+    if (requestedTime >= createDateByHrs(7) && requestedTime < createDateByHrs(20)) {  //Ordered between 8am to 8pm | Give slot in next 1hour
         // console.log("MID HIT")
         pickUpTime = requestedTime
         const pickHoursAdder = requestedTime.getHours()
